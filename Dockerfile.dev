@@ -1,0 +1,14 @@
+FROM node:18.9.0
+
+WORKDIR /app
+
+RUN npm install -g npm@8.19.1
+
+COPY . .
+
+RUN npm install
+RUN npm run test:unit
+RUN npm run test:pact
+
+EXPOSE 8080
+CMD ["npm", "run", "serve"]

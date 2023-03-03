@@ -1,0 +1,219 @@
+{
+  "consumer": {
+    "name": "todo-app-cli"
+  },
+  "interactions": [
+    {
+      "description": "a GET request to provider to get todo list",
+      "providerState": "Provider has a todo",
+      "request": {
+        "method": "GET",
+        "path": "/v1/todo/getTodos"
+      },
+      "response": {
+        "body": {
+          "code": 200,
+          "data": [
+            {
+              "id": 1,
+              "marked": 0,
+              "value": "buy some milk"
+            }
+          ],
+          "message": "Todos Listed Successfully",
+          "success": true
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.code": {
+            "match": "type"
+          },
+          "$.body.data": {
+            "match": "type",
+            "min": 1
+          },
+          "$.body.data[*].id": {
+            "match": "type"
+          },
+          "$.body.data[*].marked": {
+            "match": "type"
+          },
+          "$.body.data[*].value": {
+            "match": "type"
+          },
+          "$.body.message": {
+            "match": "type"
+          },
+          "$.body.success": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a DELETE request to delete todo",
+      "providerState": "Provider has todo to delete",
+      "request": {
+        "method": "DELETE",
+        "path": "/v1/todo/deleteTodo/1"
+      },
+      "response": {
+        "body": {
+          "code": 200,
+          "data": {},
+          "message": "Todo Deleted Successfully",
+          "success": true
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.code": {
+            "match": "type"
+          },
+          "$.body.data": {
+            "match": "type"
+          },
+          "$.body.message": {
+            "match": "type"
+          },
+          "$.body.success": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a PUT request to mark todo",
+      "providerState": "Provider has todo to mark",
+      "request": {
+        "method": "PUT",
+        "path": "/v1/todo/markTodo/1"
+      },
+      "response": {
+        "body": {
+          "code": 200,
+          "data": {
+            "id": 1,
+            "marked": 1,
+            "value": "buy some milk"
+          },
+          "message": "Todo Marked Successfully",
+          "success": true
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.code": {
+            "match": "type"
+          },
+          "$.body.data": {
+            "match": "type"
+          },
+          "$.body.data.id": {
+            "match": "type"
+          },
+          "$.body.data.marked": {
+            "match": "type"
+          },
+          "$.body.data.value": {
+            "match": "type"
+          },
+          "$.body.message": {
+            "match": "type"
+          },
+          "$.body.success": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a POST request to provider to create new todo",
+      "providerState": "Provider waiting request to create a todo",
+      "request": {
+        "body": {
+          "id": 1,
+          "marked": 0,
+          "value": "buy some milk"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.marked": {
+            "match": "type"
+          },
+          "$.body.value": {
+            "match": "type"
+          }
+        },
+        "method": "POST",
+        "path": "/v1/todo/createTodo"
+      },
+      "response": {
+        "body": {
+          "code": 200,
+          "data": {
+            "id": 1,
+            "marked": 0,
+            "value": "buy some milk"
+          },
+          "message": "Todo Created Successfully",
+          "success": true
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.code": {
+            "match": "type"
+          },
+          "$.body.data": {
+            "match": "type"
+          },
+          "$.body.data.id": {
+            "match": "type"
+          },
+          "$.body.data.marked": {
+            "match": "type"
+          },
+          "$.body.data.value": {
+            "match": "type"
+          },
+          "$.body.message": {
+            "match": "type"
+          },
+          "$.body.success": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "10.4.1"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  },
+  "provider": {
+    "name": "todo-app-api"
+  }
+}

@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  todo-app-cli:
+    container_name: 'todo-app-cli'
+    image: 'tarkanaciksoz/todo-app-cli:latest'
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE}
+      args:
+        - ENV=${APP_ENV}
+    restart: unless-stopped
+    environment:
+      ENV: ${APP_ENV}
+    networks:
+      - todo-app
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/dist
+    ports:
+      - 8080:8080
+
+networks:
+  todo-app:
+    name: todo-app
+    driver: bridge
