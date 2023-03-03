@@ -3,7 +3,7 @@ ARG ENV
 
 WORKDIR /app
 
-RUN npm install -g npm@latest \
+RUN npm install -g npm@8.19.1 \
     npm install -g http-server
 
 COPY . .
